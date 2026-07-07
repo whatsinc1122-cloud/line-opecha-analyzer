@@ -45,34 +45,36 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm sticky top-0 shadow-sm z-10">
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">💬</span>
+      <header className="bg-gradient-to-r from-blue-600 to-blue-800 text-white sticky top-0 shadow-lg z-10">
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center text-xl">
+                💬
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold">LINE オプチャ分析ツール</h1>
+                <p className="text-blue-100 text-sm mt-1">美容師向けオンラインサロンのチャット分析</p>
+              </div>
             </div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              LINE オプチャ分析ツール
-            </h1>
           </div>
-          <p className="text-gray-600">美容師向けオンラインサロンのチャット内容を確認・整理します</p>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 py-12">
+      <main className="max-w-7xl mx-auto px-6 py-12">
         {/* CTA Section */}
-        <div className="mb-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white shadow-lg">
+        <div className="mb-12 bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-300 rounded-2xl p-8">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <h2 className="text-2xl font-bold mb-2">新しいチャットをアップロード</h2>
-              <p className="text-blue-100">LINEのテキストファイルをアップロードして、チャットを分析します</p>
+              <h2 className="text-2xl font-bold text-blue-900 mb-2">📤 新しいチャットをアップロード</h2>
+              <p className="text-blue-800">LINEのテキストファイルをアップロードして、チャットを分析します</p>
             </div>
             <Link
               href="/upload"
-              className="bg-white text-blue-600 hover:bg-blue-50 font-bold py-3 px-8 rounded-lg transition shadow-lg whitespace-nowrap"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition shadow-lg whitespace-nowrap border-2 border-blue-600"
             >
               ✨ アップロード
             </Link>
@@ -82,38 +84,38 @@ export default function Home() {
         {/* Stats Cards */}
         {!loading && uploads.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            <div className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-blue-500">
-              <div className="text-gray-600 text-sm font-semibold">総メッセージ数</div>
-              <div className="text-4xl font-bold text-blue-600 mt-2">{totalStats.messages.toLocaleString()}</div>
-              <div className="text-gray-500 text-sm mt-2">{uploads.length}件のアップロード</div>
+            <div className="bg-white rounded-xl p-8 shadow-md border-l-4 border-blue-500 hover:shadow-lg transition">
+              <div className="text-gray-600 text-sm font-bold mb-2">💬 総メッセージ数</div>
+              <div className="text-5xl font-bold text-blue-600 mb-2">{totalStats.messages.toLocaleString()}</div>
+              <div className="text-gray-500 text-sm">{uploads.length}件のアップロード</div>
             </div>
-            <div className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-purple-500">
-              <div className="text-gray-600 text-sm font-semibold">総アクティブユーザー数</div>
-              <div className="text-4xl font-bold text-purple-600 mt-2">{totalStats.users}</div>
-              <div className="text-gray-500 text-sm mt-2">複数アップロード内の重複を含む</div>
+            <div className="bg-white rounded-xl p-8 shadow-md border-l-4 border-purple-500 hover:shadow-lg transition">
+              <div className="text-gray-600 text-sm font-bold mb-2">👥 総アクティブユーザー数</div>
+              <div className="text-5xl font-bold text-purple-600 mb-2">{totalStats.users}</div>
+              <div className="text-gray-500 text-sm">複数アップロード内の重複を含む</div>
             </div>
           </div>
         )}
 
         {/* Upload History Section */}
-        <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div className="bg-gradient-to-r from-gray-50 to-gray-100 px-8 py-6 border-b">
-            <h2 className="text-2xl font-bold text-gray-900">📋 アップロード履歴</h2>
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border-t-4 border-blue-600">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-8 py-6">
+            <h2 className="text-2xl font-bold">📋 アップロード履歴</h2>
           </div>
 
           {loading ? (
             <div className="p-16 text-center">
               <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-              <p className="text-gray-600 mt-4">読み込み中...</p>
+              <p className="text-gray-600 mt-4 font-semibold">読み込み中...</p>
             </div>
           ) : uploads.length === 0 ? (
-            <div className="p-16 text-center">
-              <div className="text-5xl mb-4">📁</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">チャットがまだアップロードされていません</h3>
+            <div className="p-16 text-center bg-gray-50">
+              <div className="text-6xl mb-4">📁</div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">チャットがまだアップロードされていません</h3>
               <p className="text-gray-600 mb-6">上のボタンからLINEチャットのテキストファイルをアップロードしてください</p>
               <Link
                 href="/upload"
-                className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition"
+                className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition border-2 border-blue-600"
               >
                 今すぐアップロード
               </Link>
@@ -122,30 +124,28 @@ export default function Home() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="bg-gray-100 border-b">
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">ファイル名</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">アップロード日時</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">
-                      <span className="inline-flex items-center gap-1">
-                        💬 メッセージ数
-                      </span>
+                  <tr className="bg-gray-100 border-b-2 border-gray-200">
+                    <th className="px-6 py-4 text-left text-sm font-bold text-gray-900">ファイル名</th>
+                    <th className="px-6 py-4 text-left text-sm font-bold text-gray-900">アップロード日時</th>
+                    <th className="px-6 py-4 text-center text-sm font-bold text-gray-900">
+                      💬 メッセージ数
                     </th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">
-                      <span className="inline-flex items-center gap-1">
-                        👥 ユーザー
-                      </span>
+                    <th className="px-6 py-4 text-center text-sm font-bold text-gray-900">
+                      👥 ユーザー
                     </th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">操作</th>
+                    <th className="px-6 py-4 text-center text-sm font-bold text-gray-900">操作</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y">
                   {uploads.map((upload) => (
-                    <tr key={upload.id} className="hover:bg-gray-50 transition">
+                    <tr key={upload.id} className="hover:bg-blue-50 transition">
                       <td className="px-6 py-4">
-                        <div className="font-semibold text-gray-900">{upload.filename}</div>
-                        <div className="text-xs text-gray-500 mt-1">ID: {upload.id}</div>
+                        <div className="font-bold text-gray-900">{upload.filename}</div>
+                        <div className="text-xs text-gray-500 mt-1 bg-gray-100 inline-block px-2 py-1 rounded">
+                          ID: {upload.id}
+                        </div>
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-600">
+                      <td className="px-6 py-4 text-sm text-gray-700">
                         {new Date(upload.uploadDate).toLocaleString('ja-JP', {
                           year: 'numeric',
                           month: '2-digit',
@@ -155,19 +155,19 @@ export default function Home() {
                         })}
                       </td>
                       <td className="px-6 py-4 text-center">
-                        <span className="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-semibold">
+                        <span className="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full font-bold text-sm border-2 border-blue-300">
                           {upload.totalMessages}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-center">
-                        <span className="inline-block bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold">
+                        <span className="inline-block bg-purple-100 text-purple-800 px-4 py-2 rounded-full font-bold text-sm border-2 border-purple-300">
                           {upload.activeUsers}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-center">
                         <Link
                           href={`/viewer/${upload.id}`}
-                          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition text-sm"
+                          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition text-sm border-2 border-blue-600"
                         >
                           👁️ 詳細を見る
                         </Link>
